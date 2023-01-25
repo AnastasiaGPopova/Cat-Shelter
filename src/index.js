@@ -1,17 +1,19 @@
 const express = require('express')
 const config = require('./config/configuration.js')
 const setViewEngine = require('./config/viewEngineConfig.js')
+const router = require('./routes.js')
 
 const app = express()
 
 setViewEngine(app)
 
 app.use(express.static('src/public'))
+app.use(router)
 
 
 
 app.get("/", (req,res) => {
-    res.render("home", {layout: false})
+    res.render("home")
 })
 
 app.get("/add-breed", (req,res) => {
