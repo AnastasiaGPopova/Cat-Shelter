@@ -4,7 +4,9 @@ const controller = require('../modells/Cat.js')
 
 exports.getHomePage = async (req, res) => {
     const catsDB = await controller.catController.readCats()
+    console.log(catsDB)
     
-    res.render('home', {catsDB : cats})
+    res.render('home', {cats: catsDB})
+
 }
 
