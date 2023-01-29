@@ -6,15 +6,28 @@ exports.getDetailedCat = async (req,res) => {
     res.render('editCat', {currentCat})
 }
 
-exports.addNewCat = (req,res) => {
+exports.addNewCatPage = (req,res) => {
     res.render('addCat')
 }
 
 exports.editCurrentCat = async (req,res) => {
-    const {name, description, imageUrl, breed} = req.body
+    const {name, description, image, breed} = req.body
+    console.log(req.body)
+    const filter = {_id: req.params.catId}
+    const update = {name, description, imageUrl: image, breed}
+    console.log(filter)
+    console.log(update)
     //let currentCat = await Cat.findById(req.params.catId)
-    await Cat.findOneAndUpdate({_id: req.params.catId}, name, req.body)
+    await Cat.findOneAndUpdate(filter, update)
 
-    res.redirect(`/edit/${req.params.catId}`)
+    //res.redirect(`/add-cat`)
+ 
+}
 
+exports.addingNewCat = async (req, res) => {
+    const {name, description, image, breed} = req.body
+    const newCat = new Cat({name, description, imageUrl: image, age, breed} )
+    console.log(req.body)
+    await newCat.save()
+    res.redirect('/')
 }
