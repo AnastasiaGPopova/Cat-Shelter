@@ -8,6 +8,8 @@ const catController = require('./controllers/catController.js')
 
 router.get('/', homeController.getHomePage)
 router.get('/edit/:catId', catController.getDetailedCat)
+router.put('/edit/:catId', catController.editCurrentCat)
+router.get('/add-cat', catController.addNewCat)
 
 
 
