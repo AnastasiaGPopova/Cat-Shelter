@@ -4,7 +4,6 @@ const catShema = new mongoose.Schema({
     name: String,
     breed: String,
     description: String,
-    age: Number,
     imageUrl: String
 })
 

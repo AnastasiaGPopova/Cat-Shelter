@@ -4,6 +4,7 @@ const setViewEngine = require('./config/viewEngineConfig.js')
 const router = require('./routes.js')
 const main = require('./mongooseConfig.js')
 const path = require('path')
+const bodyParser = require('body-parser');
 
 const app = express()
 
@@ -11,7 +12,10 @@ setViewEngine(app)
 main()
 
 app.use(express.static('src/public'))
-app.use(express.urlencoded({extended: false}))
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+//app.use(express.urlencoded({extended: false}))
 //app.use('/static', express.static('/public'))
 app.use(router)
 

@@ -11,10 +11,10 @@ exports.addNewCatPage = (req,res) => {
 }
 
 exports.editCurrentCat = async (req,res) => {
-    const {name, description, image, breed} = req.body
-    console.log(req.body)
+    const {name, description, imageUrl, breed} = req.body
+
     const filter = {_id: req.params.catId}
-    const update = {name, description, imageUrl: image, breed}
+    const update = {name, description, imageUrl, breed}
     console.log(filter)
     console.log(update)
     //let currentCat = await Cat.findById(req.params.catId)
@@ -25,9 +25,14 @@ exports.editCurrentCat = async (req,res) => {
 }
 
 exports.addingNewCat = async (req, res) => {
-    const {name, description, image, breed} = req.body
-    const newCat = new Cat({name, description, imageUrl: image, age, breed} )
-    console.log(req.body)
+    const {name, description, imageUrl, breed} = req.body
+
+    const newCat = new Cat({
+        name,
+        breed,
+        description,
+        imageUrl
+    })
     await newCat.save()
     res.redirect('/')
 }
